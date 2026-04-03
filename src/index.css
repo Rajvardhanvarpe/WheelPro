@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #ff9d52;
+  --color-background-light: #EAEFEF;
+  --color-background-dark: #23180f;
+  --color-form-container: #BFC9D1;
+  --color-workshop-dark: #25343F;
+
+  --font-display: "Manrope", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply font-display bg-background-light dark:bg-background-dark text-workshop-dark dark:text-white antialiased;
+  }
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+}
+
+/* Login Page Styles */
+:root {
+  --bg-texture: radial-gradient(circle at 2px 2px, rgba(37, 52, 63, 0.03) 1px, transparent 0);
+}
+
+.premium-bg {
+  background-color: #EAEFEF;
+  background-image:
+    linear-gradient(to bottom, rgba(234, 239, 239, 0.8), rgba(215, 224, 224, 1)),
+    var(--bg-texture);
+  background-size: 100% 100%, 24px 24px;
+}
+
+.brushed-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.05;
+  background: repeating-linear-gradient(45deg,
+      #000 0px,
+      #000 1px,
+      transparent 1px,
+      transparent 2px);
+}
+
+/* Print Styles */
+@media print {
+  @page {
+    /* Set margin to 0 to prevent the browser from printing headers and footers */
+    margin: 0;
+  }
+
+  html,
+  body {
+    /* Add a padding so the content doesn't get clipped by the printer's physical margins */
+    padding: 1cm;
+    background-color: white !important;
+    height: max-content !important;
+    overflow: visible !important;
+  }
+}

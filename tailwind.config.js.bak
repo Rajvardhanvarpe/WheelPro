@@ -1,0 +1,26 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+    content: [
+        "./index.html",
+        "./src/**/*.{js,ts,jsx,tsx}",
+    ],
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "primary": "#ff9d52",
+                "background-light": "#EAEFEF",
+                "background-dark": "#23180f",
+                "form-container": "#BFC9D1",
+                "workshop-dark": "#25343F",
+            },
+            fontFamily: {
+                "display": ["Manrope", "sans-serif"]
+            },
+        },
+    },
+    plugins: [
+        require('@tailwindcss/forms'),
+        require('@tailwindcss/container-queries'),
+    ],
+}
