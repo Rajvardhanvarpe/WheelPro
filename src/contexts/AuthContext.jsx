@@ -18,9 +18,21 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         console.log('🔐 AuthProvider: Setting up auth state listener...');
         
-        // Get initial session
+        // Get initial session with a safety timeout
+        const sessionTimeout = setTimeout(() => {
+            if (loading) {
+                console.warn('🔐 AuthProvider: Session check timed out, falling back to login.');
+                setLoading(false);
+            }
+        }, 3000);
+
         supabase.auth.getSession().then(({ data: { session } }) => {
+            clearTimeout(sessionTimeout);
             setUser(session?.user || null);
+            setLoading(false);
+        }).catch(err => {
+            clearTimeout(sessionTimeout);
+            console.error('🔐 AuthProvider: Error fetching session:', err);
             setLoading(false);
         });
 
